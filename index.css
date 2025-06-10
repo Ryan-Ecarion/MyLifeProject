@@ -1,0 +1,722 @@
+/* General Resets and Base Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #0A0A0A; /* Reverted to very dark grey/near black */
+    color: #E0E0E0;
+    overflow: hidden; /* Prevent scrollbars on body due to flex layout */
+    /* CSS Custom Property for default story content font size */
+    --default-story-content-font-size: 15px; 
+}
+
+#app {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 280px; /* Slightly wider for more elegant text */
+    background-color: #090909c7; /* Reverted sidebar background color */
+    padding: 40px 30px; /* Increased padding */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align title and nav list to the start */
+    border-right: 1px solid #1A1A1A; /* Adjusted subtle separator for darker bg */
+    box-shadow: 3px 0 8px rgba(0,0,0,0.3); 
+    height: 100vh; /* Full viewport height */
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.sidebar-title {
+    font-family: 'Merriweather', serif;
+    font-size: 1.5em; /* Reduced */
+    color: #FFFFFF;
+    font-weight: 700;
+    margin-bottom: 40px; /* Reduced space */
+    text-align: left;
+    letter-spacing: 0.8px;
+}
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%; 
+}
+
+.nav-item a {
+    display: block;
+    padding: 12px 8px; /* Reduced */
+    color: #A0A0A0; 
+    text-decoration: none;
+    font-size: 1em; /* Reduced */
+    font-family: 'EB Garamond', 'Times New Roman', serif; /* Elegant serif font */
+    position: relative; /* For the ::after pseudo-element */
+    margin-bottom: 10px; /* Reduced space */
+    letter-spacing: 0.3px;
+    transition: color 0.4s ease, background-color 0.4s ease, letter-spacing 0.4s ease, transform 0.3s ease-out;
+    text-align: left;
+    border-radius: 4px; /* Subtle rounding for hover/active states */
+}
+
+.nav-item a::after {
+    content: '';
+    position: absolute;
+    bottom: 6px; /* Adjusted */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 1px;
+    background-color: #FFFFFF;
+    transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother animation */
+}
+
+.nav-item a:hover {
+    color: #FFFFFF;
+    background-color: #1C1C1C; /* Adjusted hover background for darker theme */
+    letter-spacing: 0.6px; /* More pronounced letter spacing on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+.nav-item a:hover::after,
+.nav-item.active a::after {
+    width: 70%; /* Adjusted */
+}
+
+.nav-item.active a {
+    color: #FFFFFF;
+    font-weight: 700; /* Bold for active item */
+    background-color: #141414; /* Adjusted active background for darker theme */
+    letter-spacing: 0.6px;
+    transform: translateY(-1px); 
+}
+
+/* Content View Styling */
+.content-view {
+    flex: 1;
+    overflow-y: auto; 
+    position: relative; 
+    height: 100vh; 
+    box-sizing: border-box;
+}
+
+.page-section {
+    width: 100%;
+    min-height: 100%; 
+    display: flex; 
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: center;
+    text-align: center;
+    padding: 25px; /* Reduced */
+    box-sizing: border-box; 
+    position: relative; /* Added for potential absolute positioned children like edit button */
+}
+
+.section-main-title {
+    font-family: 'Merriweather', serif;
+    font-size: clamp(1.6rem, 4vw, 2.8rem); /* Reduced */
+    color: #FFFFFF;
+    margin-bottom: 20px; /* Reduced */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+
+/* Destiny Page Specifics */
+.destiny-section {
+    background: 
+        linear-gradient(rgba(10, 10, 10, 0.75), rgba(10, 10, 10, 0.95)), 
+        url('https://i.pinimg.com/736x/7e/87/d5/7e87d51d71af0cb7e863b9051114049a.jpg') 
+        no-repeat center center;
+    background-size: cover;
+    color: #FFFFFF; 
+    justify-content: center; 
+    /* position: relative; already added to .page-section */
+}
+
+.destiny-main-title {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: clamp(2rem, 5vw, 4rem);  /* Reduced */
+    font-weight: bold;
+    color: #FFFFFF;
+    margin: 0 0 9px 0; /* Reduced */
+    line-height: 1.2;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6); 
+}
+
+.destiny-subtitle {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: clamp(0.85rem, 2vw, 1.1rem); /* Reduced */
+    color: #C0C0C0; 
+    max-width: 550px; /* Reduced */
+    line-height: 1.6; 
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+}
+
+.edit-destiny-btn {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+    background-color: #2a2a2a;
+    color: #E0E0E0; /* For SVG fill */
+    border: 1px solid #444;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    z-index: 10; /* Ensure it's above other content if any overlap */
+}
+
+.edit-destiny-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: #E0E0E0; /* Ensure SVG inherits color or set explicitly */
+}
+
+.edit-destiny-btn:hover {
+    background-color: #383838;
+    transform: scale(1.05);
+}
+
+
+/* My Story Section Specifics */
+.my-story-section {
+    align-items: stretch; 
+    text-align: left;
+}
+
+.story-controls-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 800px; 
+    margin: 0 auto 20px auto; 
+    padding: 0 10px; 
+    box-sizing: border-box;
+    gap: 15px; /* Gap between add button and search/sort group */
+}
+
+.search-and-sort-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Gap between search input and sort button */
+    flex-shrink: 1; /* Allow this group to shrink if add button needs more space */
+}
+
+
+#search-story-input {
+    padding: 8px 12px;
+    border: 1px solid #444;
+    border-radius: 15px;
+    background-color: #2C2C2C;
+    color: #E0E0E0;
+    font-size: 0.85em; /* Reduced */
+    font-family: 'EB Garamond', serif;
+    width: 220px; /* Reduced */
+    /* flex-shrink: 1; /* Allow shrinking if necessary, but search-and-sort-controls handles overall shrinking */
+}
+#search-story-input:focus {
+    border-color: #666;
+}
+
+.story-controls-header .btn-icon { /* Style for icon buttons like sort */
+    background-color: #2C2C2C; 
+    border: 1px solid #444; 
+    color: #A0A0A0;
+    font-size: 1.2em; 
+    cursor: pointer;
+    padding: 0; 
+    border-radius: 50%; 
+    width: 34px; 
+    height: 34px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+    flex-shrink: 0; /* Prevent sort button from shrinking */
+}
+.story-controls-header .btn-icon:hover {
+    background-color: #383838;
+    color: #FFFFFF;
+    transform: translateY(-1px);
+}
+.story-controls-header .btn-icon.sort-active {
+    background-color: #32383e; 
+    color: #FFFFFF;
+    border-color: #4a525a; 
+}
+.story-controls-header .btn-icon #sort-stories-icon {
+    line-height: 1; 
+}
+
+
+#story-pages-container {
+    width: 100%;
+    max-width: 800px; 
+    margin: 20px auto; 
+    display: flex;
+    flex-direction: column;
+    gap: 18px; /* Reduced */
+}
+
+.story-page {
+    background-color: #181818; 
+    border: 1px solid #282828;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    overflow: hidden; 
+}
+
+.story-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px; 
+    background-color: #1F1F1F; 
+    cursor: pointer;
+    border-bottom: 1px solid #282828;
+}
+
+.story-page-header:hover {
+    background-color: #2A2A2A;
+}
+
+.story-page-title {
+    font-family: 'Merriweather', serif;
+    font-size: 1.1em; /* Reduced */
+    color: #E0E0E0;
+    margin: 0;
+    flex-grow: 1; 
+    padding: 2px 0; /* Add small padding to align better with input */
+    border-radius: 3px; /* For focus indication consistency if needed */
+}
+
+.story-page-title-input {
+    font-family: 'Merriweather', serif;
+    font-size: 1.1em; /* Match .story-page-title */
+    color: #E0E0E0;
+    background-color: #2a2a2a; /* Slightly different bg for input */
+    border: 1px solid #444;
+    padding: 3px 6px; /* Similar to h3 visual padding */
+    margin: 0; /* Match h3 */
+    flex-grow: 1; /* CRITICAL for layout */
+    border-radius: 3px;
+    line-height: inherit; /* Match h3 line-height */
+    height: auto; /* Ensure it fits text */
+    box-sizing: border-box;
+    outline: none;
+}
+.story-page-title-input:focus {
+    border-color: #666;
+    box-shadow: 0 0 0 1px #666; /* Subtle focus ring */
+}
+
+
+.story-page-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Reduced */
+    flex-shrink: 0; /* Prevent controls from shrinking */
+}
+
+.story-control-btn {
+    background: none;
+    border: none;
+    color: #A0A0A0;
+    font-size: 0.95em; /* Reduced */
+    cursor: pointer;
+    padding: 3px; /* Reduced */
+    border-radius: 50%;
+    width: 28px; /* Fixed size for round buttons */
+    height: 28px; /* Fixed size for round buttons */
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+.story-control-btn svg { 
+    display: block;
+    width: 1.1em; /* Slightly larger SVG for visual balance in buttons */
+    height: 1.1em;
+}
+
+
+.story-control-btn:hover {
+    color: #FFFFFF;
+    background-color: #333333;
+}
+.story-control-btn.hidden {
+    display: none !important; /* Ensure hidden takes precedence */
+}
+
+
+.story-page-toggle-icon {
+    font-size: 1em; /* Reduced */
+    color: #A0A0A0;
+    transition: transform 0.3s ease;
+    margin-left: 6px; /* Reduced */
+}
+
+.story-page-content {
+    padding: 12px; /* Reduced */
+    color: #C0C0C0;
+    line-height: 1.6;
+    min-height: 70px; /* Reduced */
+    border-top: none;
+    background-color: #141414; 
+    outline: none; 
+    cursor: default; 
+    font-size: var(--default-story-content-font-size); /* Use CSS variable */
+}
+
+.story-page-content[contenteditable="true"] {
+    cursor: text;
+    background-color: #101010; 
+    border: 1px dashed #444; 
+    padding: 11px; 
+}
+
+
+.story-page-content:empty::before {
+    content: "Start write your story...";
+    color: #666;
+    font-style: italic;
+}
+
+/* Modal Styling */
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6); 
+    display: none; /* Changed from flex to none by default */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #1E1E1E;
+    margin: auto;
+    padding: 20px; /* Reduced */
+    border: 1px solid #333;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 450px; /* Reduced */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    color: #E0E0E0;
+}
+
+.modal-content h3 {
+    font-family: 'Merriweather', serif;
+    margin-top: 0;
+    margin-bottom: 15px; /* Reduced */
+    color: #FFFFFF;
+    font-size: 1.3em; /* Reduced */
+}
+
+.modal-content label {
+    display: block;
+    margin-bottom: 6px; /* Reduced */
+    font-size: 0.8em; /* Reduced */
+    color: #A0A0A0;
+    margin-top: 10px; /* Add some top margin for subsequent labels */
+}
+.modal-content label:first-of-type {
+    margin-top: 0;
+}
+
+
+.modal-content input[type="text"],
+.modal-content textarea { /* Apply similar styles to textarea */
+    width: calc(100% - 20px); /* Adjusted for padding */
+    padding: 8px; /* Reduced */
+    margin-bottom: 15px; /* Reduced */
+    border: 1px solid #444;
+    border-radius: 4px;
+    background-color: #2C2C2C;
+    color: #E0E0E0;
+    font-size: 0.9em; /* Reduced */
+    font-family: 'Times New Roman', Times, serif; /* Consistent font */
+}
+
+.modal-content textarea {
+    resize: vertical;
+    min-height: 80px;
+    line-height: 1.5;
+}
+
+.btn-full-width {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 5px; /* Add some space above this button */
+    margin-bottom: 10px;
+}
+
+.destiny-bg-preview-img {
+    max-width: 100%;
+    max-height: 100px; /* Or a suitable height */
+    margin-top: 10px;
+    border-radius: 4px;
+    border: 1px solid #444;
+    display: none; /* Hidden by default */
+    object-fit: cover; /* Ensures the image covers the area nicely */
+}
+
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px; /* Reduced */
+    margin-top: 20px; /* Add space above action buttons */
+}
+
+/* General Button Styling */
+.btn {
+    padding: 8px 16px; /* Reduced */
+    border: none;
+    border-radius: 15px;
+    font-size: 0.85em; /* Reduced */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-family: 'EB Garamond', serif;
+    letter-spacing: 0.5px;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    background-color: #32383e; 
+    color: #FFFFFF;
+}
+
+.btn-primary:hover {
+    background-color: #282e35;
+}
+
+.btn-secondary {
+    background-color: #551818;
+    color: #D0D0D0;
+}
+
+.btn-secondary:hover {
+    background-color: #6e2626;
+}
+
+#add-story-page-btn { 
+    margin-bottom: 0; 
+    flex-grow: 0; /* Add button should not grow excessively */
+    flex-shrink: 0;
+    min-width: 200px; /* Ensure it's not too small on desktop */
+}
+
+
+/* Accessibility: Focus visible */
+a:focus-visible, button:focus-visible, input:focus-visible, [contenteditable]:focus-visible, textarea:focus-visible {
+  outline: 2px solid #FFFFFF;
+  outline-offset: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #app {
+        flex-direction: column; 
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto; 
+        border-right: none;
+        border-bottom: 1px solid #1A1A1A; 
+        padding: 10px; /* Reduced padding */
+        align-items: center; 
+    }
+
+    .sidebar-title {
+        margin-bottom: 10px; /* Reduced margin */
+        font-size: 1.4em; /* Significantly reduced */
+        text-align: center;
+    }
+
+    .nav-list {
+        display: flex; 
+        justify-content: space-between; 
+        width: 100%;
+        gap: 5px; /* Add small gap */
+    }
+
+    .nav-item a {
+        padding: 8px 5px; /* Significantly reduced padding */
+        border-left: none; 
+        margin-bottom: 0;
+        text-align: center;
+        font-size: 0.8em; /* Significantly reduced */
+    }
+    
+    .nav-item a:hover {
+       transform: translateY(0); 
+    }
+    .nav-item.active a {
+       transform: translateY(0);
+    }
+
+    .nav-item a::after {
+        bottom: 2px; 
+        height: 1px; 
+    }
+     .nav-item a:hover::after,
+    .nav-item.active a::after {
+        width: 45%; /* Reduced underline width */
+    }
+    
+    .content-view {
+       height: auto; 
+       min-height: calc(100vh - 110px); /* Approximate adjusted sidebar height */
+    }
+    .page-section {
+        padding: 12px; /* Reduced padding */
+    }
+    .section-main-title {
+        font-size: clamp(1.4rem, 4.5vw, 2rem); /* Significantly reduced */
+        margin-bottom: 12px; /* Reduced */
+    }
+
+    .destiny-main-title {
+        font-size: clamp(1.6rem, 6vw, 2.5rem); /* Significantly reduced */
+    }
+
+    .destiny-subtitle {
+        font-size: clamp(0.75rem, 3vw, 0.9rem); /* Significantly reduced */
+    }
+     .edit-destiny-btn {
+        bottom: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+    }
+    .edit-destiny-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .story-controls-header {
+        flex-direction: column;
+        gap: 10px; /* Adjusted gap */
+        align-items: stretch; 
+        padding: 0;
+    }
+
+    .search-and-sort-controls {
+        width: 100%; /* Ensure it spans full width in column layout */
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    #search-story-input {
+        flex-grow: 1; /* Let search input take available space beside sort button */
+        width: auto; /* Override fixed width from desktop */
+        font-size: 0.8em; /* Reduced */
+        padding: 7px 9px; /* Reduced */
+    }
+
+    .story-controls-header .btn-icon { /* Adjust sort button size for mobile */
+        width: 32px;
+        height: 32px;
+        font-size: 1.1em;
+    }
+
+    #add-story-page-btn {
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 0.85em; /* Reduced */
+        padding: 9px 12px; /* Reduced */
+        min-width: auto; /* Remove min-width on mobile */
+    }
+
+
+    #story-pages-container {
+        max-width: 100%; 
+        gap: 12px; /* Reduced gap */
+    }
+    .story-page-title {
+        font-size: 0.95em; /* Reduced */
+    }
+    .story-page-title-input {
+        font-size: 0.95em; /* Reduced */
+    }
+    .story-page-header {
+        padding: 7px 10px; /* Reduced */
+    }
+    .story-page-controls {
+        gap: 3px; /* Reduced */
+    }
+    .story-control-btn {
+        font-size: 0.85em; /* Reduced icon/button size */
+        padding: 2px; /* Reduced */
+        width: 26px;
+        height: 26px;
+    }
+    .story-control-btn svg {
+        width: 1em;
+        height: 1em;
+    }
+    .story-page-toggle-icon {
+        font-size: 0.9em; /* Reduced */
+    }
+    .story-page-content {
+        padding: 10px; /* Reduced */
+        font-size: 13px; /* Explicitly smaller for mobile */
+        min-height: 50px; /* Reduced */
+    }
+    .story-page-content[contenteditable="true"] {
+        padding: 9px;
+    }
+
+
+    .modal-content {
+        width: 90%; /* Adjusted width */
+        padding: 12px; /* Significantly reduced */
+        max-width: 380px; /* Further restrict max-width on very small screens */
+    }
+    .modal-content h3 {
+        font-size: 1.1em; /* Significantly reduced */
+        margin-bottom: 10px; /* Reduced */
+    }
+    .modal-content label {
+        font-size: 0.75em; /* Significantly reduced */
+        margin-bottom: 4px; /* Reduced */
+    }
+    .modal-content input[type="text"],
+    .modal-content textarea {
+        font-size: 0.85em; /* Significantly reduced */
+        padding: 7px; /* Significantly reduced */
+        margin-bottom: 12px; /* Reduced */
+        width: calc(100% - 18px); /* Adjusted for padding */
+    }
+    .modal-actions .btn {
+        font-size: 0.8em; /* Significantly reduced */
+        padding: 7px 10px; /* Significantly reduced */
+    }
+    .destiny-bg-preview-img {
+      max-height: 80px;
+    }
+}
