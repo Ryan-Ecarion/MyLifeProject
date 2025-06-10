@@ -1,0 +1,980 @@
+/* General Resets and Base Styles */
+:root {
+    /* Dark Theme (Default) */
+    --bg-primary: #0A0A0A;
+    --bg-secondary: #141414;
+    --bg-tertiary: #181818;
+    --bg-modal: #1E1E1E;
+    --bg-input: #2C2C2C;
+    --bg-hover: #2A2A2A;
+    --bg-active: #141414;
+    --bg-button-primary: #32383e;
+    --bg-button-primary-hover: #282e35;
+    --bg-button-secondary: #551818;
+    --bg-button-secondary-hover: #6e2626;
+    --bg-button-danger: #701a1a;
+    --bg-button-danger-hover: #8a2020;
+
+
+    --text-primary: #E0E0E0;
+    --text-secondary: #A0A0A0;
+    --text-tertiary: #C0C0C0;
+    --text-on-primary-button: #FFFFFF;
+    --text-on-secondary-button: #D0D0D0;
+
+    --border-primary: #282828;
+    --border-secondary: #444;
+    --border-focus: #666;
+    --border-sidebar: #1A1A1A;
+
+    --shadow-color-soft: rgba(0,0,0,0.2);
+    --shadow-color-medium: rgba(0,0,0,0.3);
+    --shadow-color-strong: rgba(0,0,0,0.5);
+
+    --sidebar-bg-color: #090909c7;
+    --nav-item-hover-bg: #1C1C1C;
+    --nav-item-active-bg: #141414;
+    --nav-item-text-color: #A0A0A0;
+    --nav-item-text-active-hover-color: #FFFFFF;
+
+    --story-page-header-bg: #1F1F1F;
+    --story-page-content-bg: #141414;
+    --story-page-content-editable-bg: #101010;
+    --story-page-content-placeholder: #666;
+
+    --link-underline-color: #FFFFFF;
+
+    --default-story-content-font-size: 15px; 
+
+    /* Transitions */
+    --transition-speed-fast: 0.2s;
+    --transition-speed-normal: 0.3s;
+    --transition-speed-slow: 0.5s;
+    --transition-easing: ease;
+}
+
+.light-theme {
+    --bg-primary: #F5F5F5;
+    --bg-secondary: #FFFFFF;
+    --bg-tertiary: #F0F0F0;
+    --bg-modal: #FFFFFF;
+    --bg-input: #E9E9E9;
+    --bg-hover: #E0E0E0;
+    --bg-active: #F0F0F0;
+    --bg-button-primary: #2c3e50; /* Dark blue */
+    --bg-button-primary-hover: #34495e; /* Darker blue */
+    --bg-button-secondary: #7f8c8d; /* Grey */
+    --bg-button-secondary-hover: #95a5a6; /* Lighter grey */
+    --bg-button-danger: #c0392b; /* Red */
+    --bg-button-danger-hover: #e74c3c; /* Lighter Red */
+
+
+    --text-primary: #2c3e50; /* Dark grey/blue */
+    --text-secondary: #555555;
+    --text-tertiary: #333333;
+    --text-on-primary-button: #FFFFFF;
+    --text-on-secondary-button: #FFFFFF;
+
+    --border-primary: #DCDCDC;
+    --border-secondary: #B0B0B0;
+    --border-focus: #777777;
+    --border-sidebar: #D0D0D0;
+
+    --shadow-color-soft: rgba(0,0,0,0.08);
+    --shadow-color-medium: rgba(0,0,0,0.12);
+    --shadow-color-strong: rgba(0,0,0,0.2);
+
+    --sidebar-bg-color: #EAEAEAc7;
+    --nav-item-hover-bg: #DADADA;
+    --nav-item-active-bg: #E0E0E0;
+    --nav-item-text-color: #555555;
+    --nav-item-text-active-hover-color: #000000;
+
+    --story-page-header-bg: #E8E8E8;
+    --story-page-content-bg: #FDFDFD;
+    --story-page-content-editable-bg: #F9F9F9;
+    --story-page-content-placeholder: #999999;
+
+    --link-underline-color: #000000;
+}
+
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    overflow: hidden; 
+    transition: background-color var(--transition-speed-normal) var(--transition-easing), 
+                color var(--transition-speed-normal) var(--transition-easing);
+}
+
+#app {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 280px; 
+    background-color: var(--sidebar-bg-color);
+    padding: 25px 30px; /* Adjusted top padding */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    border-right: 1px solid var(--border-sidebar); 
+    box-shadow: 3px 0 8px var(--shadow-color-medium); 
+    height: 100vh; 
+    box-sizing: border-box;
+    flex-shrink: 0;
+    transition: background-color var(--transition-speed-normal) var(--transition-easing), 
+                border-color var(--transition-speed-normal) var(--transition-easing);
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 30px; /* Reduced space */
+}
+
+.sidebar-title {
+    font-family: 'Merriweather', serif;
+    font-size: 1.5em; 
+    color: var(--text-primary);
+    font-weight: 700;
+    text-align: left;
+    letter-spacing: 0.8px;
+    transition: color var(--transition-speed-normal) var(--transition-easing);
+}
+
+.settings-icon-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5em; /* Match title visual weight a bit */
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color var(--transition-speed-normal) var(--transition-easing), background-color var(--transition-speed-normal) var(--transition-easing);
+}
+.settings-icon-btn:hover {
+    color: var(--text-primary);
+    background-color: var(--bg-hover);
+}
+.settings-icon-btn svg {
+    display: block;
+}
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%; 
+}
+
+.nav-item a {
+    display: block;
+    padding: 12px 8px; 
+    color: var(--nav-item-text-color); 
+    text-decoration: none;
+    font-size: 1em; 
+    font-family: 'EB Garamond', 'Times New Roman', serif; 
+    position: relative; 
+    margin-bottom: 10px; 
+    letter-spacing: 0.3px;
+    transition: color var(--transition-speed-normal) var(--transition-easing), 
+                background-color var(--transition-speed-normal) var(--transition-easing), 
+                letter-spacing var(--transition-speed-normal) var(--transition-easing), 
+                transform var(--transition-speed-fast) var(--transition-easing);
+    text-align: left;
+    border-radius: 4px;
+}
+
+.nav-item a::after {
+    content: '';
+    position: absolute;
+    bottom: 6px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 1px;
+    background-color: var(--link-underline-color);
+    transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), background-color var(--transition-speed-normal) var(--transition-easing);
+}
+
+.nav-item a:hover {
+    color: var(--nav-item-text-active-hover-color);
+    background-color: var(--nav-item-hover-bg); 
+    letter-spacing: 0.6px; 
+    transform: translateY(-2px); 
+}
+
+.nav-item a:hover::after,
+.nav-item.active a::after {
+    width: 70%; 
+}
+
+.nav-item.active a {
+    color: var(--nav-item-text-active-hover-color);
+    font-weight: 700; 
+    background-color: var(--nav-item-active-bg); 
+    letter-spacing: 0.6px;
+    transform: translateY(-1px); 
+}
+
+/* Content View Styling */
+.content-view {
+    flex: 1;
+    overflow-y: auto; 
+    position: relative; 
+    height: 100vh; 
+    box-sizing: border-box;
+    transition: background-color var(--transition-speed-normal) var(--transition-easing), 
+                color var(--transition-speed-normal) var(--transition-easing);
+}
+
+.page-section {
+    width: 100%;
+    min-height: 100%; 
+    display: flex; 
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: center;
+    text-align: center;
+    padding: 25px; 
+    box-sizing: border-box; 
+    position: relative; 
+    transition: background-color var(--transition-speed-normal) var(--transition-easing);
+}
+
+.section-main-title {
+    font-family: 'Merriweather', serif;
+    font-size: clamp(1.6rem, 4vw, 2.8rem); 
+    color: var(--text-primary);
+    margin-bottom: 20px; 
+    text-shadow: 1px 1px 2px var(--shadow-color-soft);
+    transition: color var(--transition-speed-normal) var(--transition-easing);
+}
+
+
+/* Destiny Page Specifics */
+.destiny-section {
+    /* Background image is handled by JS, but gradient can be themed */
+    color: #FFFFFF; /* Usually text on dark bg images is white, override if light theme needs different handling for text on image */
+    justify-content: center; 
+}
+.light-theme .destiny-section {
+    /* If background becomes light, text might need to be dark. This depends on the image. */
+    /* For now, assume images are generally dark or have a dark overlay. */
+     color: #FFFFFF; /* Keep white or adjust if light theme images are light */
+}
+
+
+.destiny-main-title {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: clamp(2rem, 5vw, 4rem);  
+    font-weight: bold;
+    color: inherit; /* Inherits from .destiny-section, usually white */
+    margin: 0 0 9px 0; 
+    line-height: 1.2;
+    text-shadow: 1px 1px 3px var(--shadow-color-strong); 
+}
+
+.destiny-subtitle {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: clamp(0.85rem, 2vw, 1.1rem); 
+    color: #C0C0C0; /* Subtitle color for readability on bg image */
+    max-width: 550px; 
+    line-height: 1.6; 
+    margin: 0;
+    text-shadow: 1px 1px 2px var(--shadow-color-medium);
+}
+.light-theme .destiny-subtitle {
+    color: #EAEAEA; /* Lighter subtitle for light theme if bg is dark, or darker if bg is light */
+}
+
+.edit-destiny-btn {
+    position: absolute;
+    bottom: 25px; 
+    right: 25px; 
+    z-index: 10; 
+    background-color: var(--bg-input); /* Use a theme variable */
+    color: var(--text-primary); /* For SVG fill */
+    border: 1px solid var(--border-secondary);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 6px var(--shadow-color-medium);
+    transition: background-color var(--transition-speed-normal) var(--transition-easing), 
+                transform var(--transition-speed-fast) var(--transition-easing),
+                border-color var(--transition-speed-normal) var(--transition-easing),
+                color var(--transition-speed-normal) var(--transition-easing);
+}
+
+.edit-destiny-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor; 
+}
+
+.edit-destiny-btn:hover {
+    background-color: var(--bg-hover);
+    transform: scale(1.05);
+}
+
+
+/* My Story Section Specifics */
+.my-story-section {
+    align-items: stretch; 
+    text-align: left;
+}
+
+.story-controls-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 800px; 
+    margin: 0 auto 20px auto; 
+    padding: 0 10px; 
+    box-sizing: border-box;
+    gap: 15px; 
+}
+
+.search-and-sort-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px; 
+    flex-shrink: 1; 
+}
+
+
+#search-story-input {
+    padding: 8px 12px;
+    border: 1px solid var(--border-secondary);
+    border-radius: 15px;
+    background-color: var(--bg-input);
+    color: var(--text-primary);
+    font-size: 0.85em; 
+    font-family: 'EB Garamond', serif;
+    width: 220px; 
+    transition: background-color var(--transition-speed-normal) var(--transition-easing), 
+                color var(--transition-speed-normal) var(--transition-easing),
+                border-color var(--transition-speed-normal) var(--transition-easing);
+}
+#search-story-input:focus {
+    border-color: var(--border-focus);
+}
+
+.story-controls-header .btn-icon { 
+    background-color: var(--bg-input); 
+    border: 1px solid var(--border-secondary); 
+    color: var(--text-secondary);
+    font-size: 1.2em; 
+    cursor: pointer;
+    padding: 0; 
+    border-radius: 50%; 
+    width: 34px; 
+    height: 34px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color var(--transition-speed-normal) var(--transition-easing), 
+                color var(--transition-speed-normal) var(--transition-easing), 
+                border-color var(--transition-speed-normal) var(--transition-easing), 
+                transform var(--transition-speed-fast) var(--transition-easing);
+    flex-shrink: 0; 
+}
+.story-controls-header .btn-icon:hover {
+    background-color: var(--bg-hover);
+    color: var(--text-primary);
+    transform: translateY(-1px);
+}
+.story-controls-header .btn-icon.sort-active {
+    background-color: var(--bg-button-primary); 
+    color: var(--text-on-primary-button);
+    border-color: var(--bg-button-primary-hover); 
+}
+.story-controls-header .btn-icon #sort-stories-icon {
+    line-height: 1; 
+}
+
+
+#story-pages-container {
+    width: 100%;
+    max-width: 800px; 
+    margin: 20px auto; 
+    display: flex;
+    flex-direction: column;
+    gap: 18px; 
+}
+
+.story-page {
+    background-color: var(--bg-tertiary); 
+    border: 1px solid var(--border-primary);
+    border-radius: 6px;
+    box-shadow: 0 2px 5px var(--shadow-color-soft);
+    overflow: hidden; 
+    transition: background-color var(--transition-speed-normal) var(--transition-easing), 
+                border-color var(--transition-speed-normal) var(--transition-easing);
+}
+
+.story-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px; 
+    background-color: var(--story-page-header-bg); 
+    cursor: pointer;
+    border-bottom: 1px solid var(--border-primary);
+    transition: background-color var(--transition-speed-normal) var(--transition-easing), 
+                border-color var(--transition-speed-normal) var(--transition-easing);
+}
+
+.story-page-header:hover {
+    background-color: var(--bg-hover);
+}
+
+.story-page-title {
+    font-family: 'Merriweather', serif;
+    font-size: 1.1em; 
+    color: var(--text-primary);
+    margin: 0;
+    flex-grow: 1; 
+    padding: 2px 0; 
+    border-radius: 3px; 
+    transition: color var(--transition-speed-normal) var(--transition-easing);
+}
+
+.story-page-title-input {
+    font-family: 'Merriweather', serif;
+    font-size: 1.1em; 
+    color: var(--text-primary);
+    background-color: var(--bg-input); 
+    border: 1px solid var(--border-secondary);
+    padding: 3px 6px; 
+    margin: 0; 
+    flex-grow: 1; 
+    border-radius: 3px;
+    line-height: inherit; 
+    height: auto; 
+    box-sizing: border-box;
+    outline: none;
+    transition: background-color var(--transition-speed-normal) var(--transition-easing), 
+                color var(--transition-speed-normal) var(--transition-easing),
+                border-color var(--transition-speed-normal) var(--transition-easing);
+}
+.story-page-title-input:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 1px var(--border-focus); 
+}
+
+
+.story-page-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px; 
+    flex-shrink: 0; 
+}
+
+.story-control-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 0.95em; 
+    cursor: pointer;
+    padding: 3px; 
+    border-radius: 50%;
+    width: 28px; 
+    height: 28px; 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    transition: color var(--transition-speed-normal) var(--transition-easing), 
+                background-color var(--transition-speed-normal) var(--transition-easing);
+}
+.story-control-btn svg { 
+    display: block;
+    width: 1.1em; 
+    height: 1.1em;
+}
+
+
+.story-control-btn:hover {
+    color: var(--text-primary);
+    background-color: var(--bg-hover);
+}
+.story-control-btn.hidden {
+    display: none !important; 
+}
+
+
+.story-page-toggle-icon {
+    font-size: 1em; 
+    color: var(--text-secondary);
+    transition: transform var(--transition-speed-normal) var(--transition-easing), 
+                color var(--transition-speed-normal) var(--transition-easing);
+    margin-left: 6px; 
+}
+
+.story-page-content {
+    padding: 12px; 
+    color: var(--text-tertiary);
+    line-height: 1.6;
+    min-height: 70px; 
+    border-top: none;
+    background-color: var(--story-page-content-bg); 
+    outline: none; 
+    cursor: default; 
+    font-size: var(--default-story-content-font-size); 
+    transition: background-color var(--transition-speed-normal) var(--transition-easing), 
+                color var(--transition-speed-normal) var(--transition-easing),
+                border-color var(--transition-speed-normal) var(--transition-easing);
+}
+
+.story-page-content[contenteditable="true"] {
+    cursor: text;
+    background-color: var(--story-page-content-editable-bg); 
+    border: 1px dashed var(--border-secondary); 
+    padding: 11px; 
+}
+
+
+.story-page-content:empty::before {
+    content: "Start write your story..."; /* Handled by JS for translation */
+    color: var(--story-page-content-placeholder);
+    font-style: italic;
+    transition: color var(--transition-speed-normal) var(--transition-easing);
+}
+
+/* Modal Styling */
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6); 
+    display: none; 
+    justify-content: center;
+    align-items: center;
+    -webkit-backdrop-filter: blur(3px); /* Frosted glass effect */
+    backdrop-filter: blur(3px);
+}
+
+.modal-content {
+    background-color: var(--bg-modal);
+    margin: auto;
+    padding: 20px; 
+    border: 1px solid var(--border-primary);
+    border-radius: 8px;
+    width: 90%;
+    max-width: 450px; 
+    box-shadow: 0 5px 15px var(--shadow-color-strong);
+    color: var(--text-primary);
+    transition: background-color var(--transition-speed-normal) var(--transition-easing), 
+                color var(--transition-speed-normal) var(--transition-easing),
+                border-color var(--transition-speed-normal) var(--transition-easing);
+}
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.modal-close-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.8em;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0 5px;
+    line-height: 1;
+}
+.modal-close-btn:hover {
+    color: var(--text-primary);
+}
+
+
+.modal-content h3 {
+    font-family: 'Merriweather', serif;
+    margin-top: 0;
+    margin-bottom: 15px; 
+    color: var(--text-primary);
+    font-size: 1.3em; 
+    transition: color var(--transition-speed-normal) var(--transition-easing);
+}
+#settings-modal .modal-content h3 { /* Specific to settings modal title if in header */
+    margin-bottom: 0;
+}
+
+
+.modal-content label {
+    display: block;
+    margin-bottom: 6px; 
+    font-size: 0.8em; 
+    color: var(--text-secondary);
+    margin-top: 10px; 
+    transition: color var(--transition-speed-normal) var(--transition-easing);
+}
+.modal-content label:first-of-type {
+    margin-top: 0;
+}
+
+
+.modal-content input[type="text"],
+.modal-content textarea { 
+    width: calc(100% - 20px); 
+    padding: 8px; 
+    margin-bottom: 15px; 
+    border: 1px solid var(--border-secondary);
+    border-radius: 4px;
+    background-color: var(--bg-input);
+    color: var(--text-primary);
+    font-size: 0.9em; 
+    font-family: 'Times New Roman', Times, serif; 
+    transition: background-color var(--transition-speed-normal) var(--transition-easing), 
+                color var(--transition-speed-normal) var(--transition-easing),
+                border-color var(--transition-speed-normal) var(--transition-easing);
+}
+
+.modal-content textarea {
+    resize: vertical;
+    min-height: 80px;
+    line-height: 1.5;
+}
+
+.btn-full-width {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 5px; 
+    margin-bottom: 10px;
+}
+
+.destiny-bg-preview-img {
+    max-width: 100%;
+    max-height: 100px; 
+    margin-top: 10px;
+    border-radius: 4px;
+    border: 1px solid var(--border-secondary);
+    display: none; 
+    object-fit: cover; 
+    transition: border-color var(--transition-speed-normal) var(--transition-easing);
+}
+
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px; 
+    margin-top: 20px; 
+}
+
+/* Settings Modal Specific Styles */
+.settings-section {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-primary);
+    transition: border-color var(--transition-speed-normal) var(--transition-easing);
+}
+.settings-section:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+.settings-section label { /* General label for section title */
+    font-weight: bold;
+    font-size: 0.9em;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+}
+.radio-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.radio-group input[type="radio"] {
+    margin-right: 8px;
+    accent-color: var(--bg-button-primary); /* Modern way to color radio/checkbox */
+}
+.radio-group label { /* Label for radio button itself */
+    margin: 0;
+    font-size: 0.9em;
+    color: var(--text-tertiary);
+    font-weight: normal;
+}
+.settings-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-primary);
+    justify-content: center; /* Center the reset button */
+    transition: border-color var(--transition-speed-normal) var(--transition-easing);
+}
+
+
+/* General Button Styling */
+.btn {
+    padding: 8px 16px; 
+    border: none;
+    border-radius: 15px;
+    font-size: 0.85em; 
+    cursor: pointer;
+    transition: background-color var(--transition-speed-normal) var(--transition-easing), 
+                transform var(--transition-speed-fast) var(--transition-easing),
+                color var(--transition-speed-normal) var(--transition-easing);
+    font-family: 'EB Garamond', serif;
+    letter-spacing: 0.5px;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    background-color: var(--bg-button-primary); 
+    color: var(--text-on-primary-button);
+}
+
+.btn-primary:hover {
+    background-color: var(--bg-button-primary-hover);
+}
+
+.btn-secondary {
+    background-color: var(--bg-button-secondary);
+    color: var(--text-on-secondary-button);
+}
+
+.btn-secondary:hover {
+    background-color: var(--bg-button-secondary-hover);
+}
+
+.btn-danger {
+    background-color: var(--bg-button-danger);
+    color: var(--text-on-primary-button); /* Typically white text on red */
+}
+.btn-danger:hover {
+    background-color: var(--bg-button-danger-hover);
+}
+
+
+#add-story-page-btn { 
+    margin-bottom: 0; 
+    flex-grow: 0; 
+    flex-shrink: 0;
+    min-width: 200px; 
+}
+
+
+/* Accessibility: Focus visible */
+a:focus-visible, button:focus-visible, input:focus-visible, [contenteditable]:focus-visible, textarea:focus-visible, [tabindex="0"]:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #app {
+        flex-direction: column; 
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto; 
+        border-right: none;
+        border-bottom: 1px solid var(--border-sidebar); 
+        padding: 10px; 
+        align-items: center; 
+    }
+    .sidebar-header {
+        margin-bottom: 10px;
+        padding: 0 5px; /* Ensure title and icon have some space */
+    }
+
+    .sidebar-title {
+        font-size: 1.4em; 
+        text-align: center;
+    }
+    .settings-icon-btn {
+        font-size: 1.3em; /* Adjust for mobile */
+    }
+
+    .nav-list {
+        display: flex; 
+        justify-content: space-around; /* Space around for better distribution */
+        width: 100%;
+        gap: 5px; 
+    }
+
+    .nav-item a {
+        padding: 8px 5px; 
+        margin-bottom: 0;
+        text-align: center;
+        font-size: 0.8em; 
+    }
+    
+    .nav-item a:hover {
+       transform: translateY(0); 
+    }
+    .nav-item.active a {
+       transform: translateY(0);
+    }
+
+    .nav-item a::after {
+        bottom: 2px; 
+        height: 1px; 
+    }
+     .nav-item a:hover::after,
+    .nav-item.active a::after {
+        width: 45%; 
+    }
+    
+    .content-view {
+       height: auto; 
+       min-height: calc(100vh - 120px); /* Approximate adjusted sidebar height, might need fine-tuning */
+    }
+    .page-section {
+        padding: 12px; 
+    }
+    .section-main-title {
+        font-size: clamp(1.4rem, 4.5vw, 2rem); 
+        margin-bottom: 12px; 
+    }
+
+    .destiny-main-title {
+        font-size: clamp(1.6rem, 6vw, 2.5rem); 
+    }
+
+    .destiny-subtitle {
+        font-size: clamp(0.75rem, 3vw, 0.9rem); 
+    }
+     .edit-destiny-btn {
+        bottom: 20px; 
+        right: 20px;  
+        width: 40px;
+        height: 40px;
+    }
+    .edit-destiny-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .story-controls-header {
+        flex-direction: column;
+        gap: 10px; 
+        align-items: stretch; 
+        padding: 0;
+    }
+
+    .search-and-sort-controls {
+        width: 100%; 
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    #search-story-input {
+        flex-grow: 1; 
+        width: auto; 
+        font-size: 0.8em; 
+        padding: 7px 9px; 
+    }
+
+    .story-controls-header .btn-icon { 
+        width: 32px;
+        height: 32px;
+        font-size: 1.1em;
+    }
+
+    #add-story-page-btn {
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 0.85em; 
+        padding: 9px 12px; 
+        min-width: auto; 
+    }
+
+
+    #story-pages-container {
+        max-width: 100%; 
+        gap: 12px; 
+    }
+    .story-page-title {
+        font-size: 0.95em; 
+    }
+    .story-page-title-input {
+        font-size: 0.95em; 
+    }
+    .story-page-header {
+        padding: 7px 10px; 
+    }
+    .story-page-controls {
+        gap: 3px; 
+    }
+    .story-control-btn {
+        font-size: 0.85em; 
+        padding: 2px; 
+        width: 26px;
+        height: 26px;
+    }
+    .story-control-btn svg {
+        width: 1em;
+        height: 1em;
+    }
+    .story-page-toggle-icon {
+        font-size: 0.9em; 
+    }
+    .story-page-content {
+        padding: 10px; 
+        font-size: 13px; 
+        min-height: 50px; 
+    }
+    .story-page-content[contenteditable="true"] {
+        padding: 9px;
+    }
+
+
+    .modal-content {
+        width: 90%; 
+        padding: 15px; /* Slightly more padding than 12px */
+        max-width: none; /* Allow it to be wider on tablets */
+    }
+    .modal-content h3 {
+        font-size: 1.1em; 
+        margin-bottom: 10px; 
+    }
+    .modal-content label {
+        font-size: 0.75em; 
+        margin-bottom: 4px; 
+    }
+    .modal-content input[type="text"],
+    .modal-content textarea {
+        font-size: 0.85em; 
+        padding: 7px; 
+        margin-bottom: 12px; 
+        width: calc(100% - 18px); 
+    }
+    .modal-actions .btn {
+        font-size: 0.8em; 
+        padding: 7px 10px; 
+    }
+    .destiny-bg-preview-img {
+      max-height: 80px;
+    }
+}

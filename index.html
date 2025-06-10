@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyLifeProject</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="app">
+        <nav class="sidebar" aria-label="Main Navigation">
+            <div class="sidebar-header">
+                <div class="sidebar-title" data-translate-key="sidebarTitle">MyLifeProject</div>
+                <button id="settings-btn" class="settings-icon-btn" aria-label="Buka Pengaturan" title="Pengaturan">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69-.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61.22l2-3.46c.12-.22-.07.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"></path></svg>
+                </button>
+            </div>
+            <ul class="nav-list">
+                <li class="nav-item active"><a href="#destiny" data-translate-key="navDestiny">Destiny</a></li>
+                <li class="nav-item"><a href="#my-story" data-translate-key="navMyStory">My Story</a></li>
+                <li class="nav-item"><a href="#goal" data-translate-key="navGoal">Goal</a></li>
+                <li class="nav-item"><a href="#achievement" data-translate-key="navAchievement">Achievement</a></li>
+            </ul>
+        </nav>
+        <main id="main-content" class="content-view">
+            <section id="destiny" class="page-section destiny-section" aria-labelledby="destiny-main-title">
+                <h1 id="destiny-main-title" class="destiny-main-title" data-translate-key="destinyDefaultTitle">What is meaning of life?</h1>
+                <p id="destiny-subtitle-text" class="destiny-subtitle" data-translate-key="destinyDefaultSubtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <button id="edit-destiny-btn" class="edit-destiny-btn" aria-label="Ubah konten Destiny" title="Ubah konten Destiny" data-translate-key-aria="editDestinyButton" data-translate-key-title="editDestinyButtonTitle">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83zM3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM5.92 19H5v-.92l9.06-9.06.92.92L5.92 19z"></path></svg>
+                </button>
+            </section>
+            
+            <section id="my-story" class="page-section my-story-section" style="display:none;" aria-labelledby="my-story-main-title-h2">
+                 <h2 id="my-story-main-title-h2" class="section-main-title" data-translate-key="myStoryMainTitle">My Story</h2>
+                 <div class="story-controls-header">
+                    <button id="add-story-page-btn" class="btn btn-primary" data-translate-key="addPageButton">Add Page</button>
+                    <div class="search-and-sort-controls">
+                        <input type="search" id="search-story-input" placeholder="Cari halaman..." aria-label="Cari halaman cerita" data-translate-key-placeholder="searchStoryPlaceholder" data-translate-key-aria="searchStoryLabel">
+                        <button id="sort-stories-btn" class="btn btn-icon" title="Urutkan dari Terlama" aria-label="Urutkan cerita dari terlama" aria-pressed="false">
+                            <span id="sort-stories-icon">&#x2191;</span> <!-- UP ARROW: Sort Oldest First -->
+                        </button>
+                    </div>
+                 </div>
+                 <div id="story-pages-container">
+                     <!-- Story pages will be appended here -->
+                 </div>
+            </section>
+
+            <section id="goal" class="page-section" style="display:none;" aria-labelledby="goal-main-title-h2">
+                 <h2 id="goal-main-title-h2" class="section-main-title" data-translate-key="navGoal">Goal</h2>
+                 <p data-translate-key="goalPageContent">Content for Goal...</p>
+            </section>
+
+            <section id="achievement" class="page-section" style="display:none;" aria-labelledby="achievement-main-title-h2">
+                 <h2 id="achievement-main-title-h2" class="section-main-title" data-translate-key="navAchievement">Achievement</h2>
+                 <p data-translate-key="achievementPageContent">Content for Achievement...</p>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal for adding new story page -->
+    <div id="add-page-modal" class="modal" style="display:none;" role="dialog" aria-labelledby="add-modal-title-h3" aria-modal="true">
+        <div class="modal-content">
+            <h3 id="add-modal-title-h3" data-translate-key="addPageModalTitle">Create new page</h3>
+            <label for="page-name-input" data-translate-key="pageNameLabel">Page name:</label>
+            <input type="text" id="page-name-input" placeholder="example: my biggest dream" data-translate-key-placeholder="pageNamePlaceholder">
+            <div class="modal-actions">
+                <button id="create-page-submit-btn" class="btn btn-primary" data-translate-key="confirmButton">Yes</button>
+                <button id="cancel-page-btn" class="btn btn-secondary" data-translate-key="cancelButton">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for confirming delete -->
+    <div id="delete-confirm-modal" class="modal" style="display:none;" role="dialog" aria-labelledby="delete-modal-title-h3" aria-modal="true">
+        <div class="modal-content">
+            <h3 id="delete-modal-title-h3" data-translate-key="deleteConfirmModalTitle">Delete Confirm</h3>
+            <p id="delete-modal-message">Are you sure want to delete this page?</p>
+            <div class="modal-actions">
+                <button id="confirm-delete-btn" class="btn btn-primary" data-translate-key="confirmButton">Yes</button>
+                <button id="cancel-delete-btn" class="btn btn-secondary" data-translate-key="cancelButton">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for editing Destiny content -->
+    <div id="edit-destiny-modal" class="modal" style="display:none;" role="dialog" aria-labelledby="edit-destiny-modal-title-h3" aria-modal="true">
+        <div class="modal-content">
+            <h3 id="edit-destiny-modal-title-h3" data-translate-key="editDestinyModalTitle">Change this content</h3>
+            <label for="destiny-title-input" data-translate-key="destinyModalTitleLabel">Title:</label>
+            <input type="text" id="destiny-title-input" placeholder="Masukkan judul utama" data-translate-key-placeholder="destinyModalTitlePlaceholder">
+            
+            <label for="destiny-subtitle-input" data-translate-key="destinyModalSubtitleLabel">Sub-title:</label>
+            <textarea id="destiny-subtitle-input" rows="5" placeholder="Masukkan subjudul atau deskripsi" data-translate-key-placeholder="destinyModalSubtitlePlaceholder"></textarea>
+            
+            <label for="destiny-bg-input-trigger-btn" data-translate-key="destinyModalBgLabel">Change Background (Optional):</label>
+            <input type="file" id="destiny-bg-input" accept="image/*" style="display: none;">
+            <button type="button" id="destiny-bg-input-trigger-btn" class="btn btn-primary btn-full-width" aria-describedby="destiny-bg-note" data-translate-key="destinyModalBgButton">Select your file</button>
+            <small id="destiny-bg-note" style="display: block; margin-top: 5px; color: #888;" data-translate-key="destinyModalBgPreviewNote">preview</small>
+            <img id="destiny-bg-preview" src="#" alt="Pratinjau Latar Belakang" class="destiny-bg-preview-img">
+
+            <div class="modal-actions">
+                <button id="save-destiny-btn" class="btn btn-primary" data-translate-key="saveButton">Save</button>
+                <button id="cancel-edit-destiny-btn" class="btn btn-secondary" data-translate-key="cancelButton">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal" style="display:none;" role="dialog" aria-labelledby="settings-modal-title-h3" aria-modal="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="settings-modal-title-h3" data-translate-key="settingsModalTitle">Pengaturan</h3>
+                <button id="settings-modal-close-btn" class="modal-close-btn" aria-label="Tutup Pengaturan">&times;</button>
+            </div>
+            
+            <div class="settings-section">
+                <label data-translate-key="languageLabel">Bahasa:</label>
+                <div class="radio-group">
+                    <input type="radio" id="lang-id" name="language" value="id" checked>
+                    <label for="lang-id">Bahasa Indonesia</label>
+                </div>
+                <div class="radio-group">
+                    <input type="radio" id="lang-en" name="language" value="en">
+                    <label for="lang-en">English</label>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <label data-translate-key="themeLabel">Tema:</label>
+                <div class="radio-group">
+                    <input type="radio" id="theme-dark" name="theme" value="dark" checked>
+                    <label for="theme-dark" data-translate-key="darkTheme">Mode Gelap</label>
+                </div>
+                <div class="radio-group">
+                    <input type="radio" id="theme-light" name="theme" value="light">
+                    <label for="theme-light" data-translate-key="lightTheme">Mode Terang</label>
+                </div>
+            </div>
+            
+            <div class="modal-actions settings-footer">
+                <button id="reset-settings-btn" class="btn btn-danger" data-translate-key="resetSettingsButton">Reset Setelan Default</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="module" src="index.tsx"></script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
